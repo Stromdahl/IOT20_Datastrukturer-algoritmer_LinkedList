@@ -31,6 +31,16 @@ public class LinkedList<E> {
         return head == null;
     }
 
+    public boolean contains(E value) {
+        boolean result = false;
+        for(int i=0; i<size(); i++) {
+            get(i) ;
+            if (get(i) == value) {
+                result = true;
+            }
+        }return result;
+    }
+
     class Node<E> {
         Node<E> next;
         E value;

@@ -100,4 +100,17 @@ public class LinkedListTest {
         assertEquals(3, l.size());
         assertFalse(l.empty());
     }
+
+    @Test
+    @DisplayName("Test if list the value")
+    void testListContainsValueOf(){
+        LinkedList<Integer> l = new LinkedList();
+        l.add(1);
+        l.add(2);
+        l.add(3);
+        assertTrue(l.contains(2));
+        assertFalse(l.contains(8));
+    }
+
+
 }
