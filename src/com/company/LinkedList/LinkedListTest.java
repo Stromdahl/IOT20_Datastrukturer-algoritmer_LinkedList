@@ -112,5 +112,13 @@ public class LinkedListTest {
         assertFalse(l.contains(8));
     }
 
+    @Test
+    @DisplayName("Test if push adds value")
+    void testPushAddsValue() {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        assertEquals(1, stack.pop());
+    }
+
 
 }
