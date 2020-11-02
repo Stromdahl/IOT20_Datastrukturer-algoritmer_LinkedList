@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AwesomeLinkedListTest {
+public class LinkedListTest {
 
     @Test
     @DisplayName("Test add a element to list")
