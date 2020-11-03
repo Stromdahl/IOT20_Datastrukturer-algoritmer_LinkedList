@@ -12,10 +12,12 @@ public class LinkedList<E> {
     }
 
     public void add(int i, E value) {
+        if (i >= this.size()) throw new IndexOutOfBoundsException();
         head.add(i, value);
     }
 
-    public E get(int i) {
+    public E get(int i) throws IndexOutOfBoundsException {
+        if (i >= this.size()) throw new IndexOutOfBoundsException();
         return head.get(i).value;
     }
 
@@ -33,15 +35,16 @@ public class LinkedList<E> {
 
     public boolean contains(E value) {
         boolean result = false;
-        for(int i=0; i<size(); i++) {
-            get(i) ;
+        for (int i = 0; i < size(); i++) {
+            get(i);
             if (get(i) == value) {
                 result = true;
             }
-        }return result;
+        }
+        return result;
     }
 
-    class Node<E> {
+    static class Node<E> {
         Node<E> next;
         E value;
 
@@ -49,7 +52,7 @@ public class LinkedList<E> {
             this.value = value;
         }
 
-        Node(E value, Node nextElement) {
+        Node(E value, Node<E> nextElement) {
             this.value = value;
             this.next = nextElement;
         }
@@ -66,7 +69,7 @@ public class LinkedList<E> {
             if (i > 0) {
                 this.next.add(i - 1, value);
             } else {
-                this.next = new Node<E>(this.value, this.next);
+                this.next = new Node<>(this.value, this.next);
                 this.value = value;
             }
         }

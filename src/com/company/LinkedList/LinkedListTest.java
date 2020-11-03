@@ -10,7 +10,7 @@ public class LinkedListTest {
     @Test
     @DisplayName("Test add a element to list")
     void testAddElementToList() {
-        LinkedList<Integer> linkedList = new LinkedList();
+        LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(1);
         assertEquals(1, linkedList.get(0));
     }
@@ -18,18 +18,26 @@ public class LinkedListTest {
     @Test
     @DisplayName("Test add a element to list")
     void testAddElementToListAtIndex() {
-        LinkedList<Integer> linkedList = new LinkedList();
+        LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(1);
         linkedList.add(2);
         linkedList.add(3);
-        linkedList.add(1, 4);
-        assertEquals(4, linkedList.get(1));
+        linkedList.add(0, 4);
+        assertEquals(4, linkedList.get(0));
+    }
+
+    @Test
+    @DisplayName("Test add a element to list out of bounds")
+    void testAddElementToListAtIndexOutOfBounds() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.add(2, 4));
     }
 
     @Test
     @DisplayName("Test if the correct size is returned")
     void testGetListSize() {
-        LinkedList<Integer> linkedList = new LinkedList();
+        LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(1);
         linkedList.add(2);
         linkedList.add(3);
@@ -37,32 +45,40 @@ public class LinkedListTest {
     }
 
     @Test
+    @DisplayName("Test get element out of bonds")
+    void testGetElementAtIndexOutOutbounds() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.get(1));
+    }
+
+    @Test
     @DisplayName("Test get element at index")
     void testGetElementAtIndex() {
-        LinkedList<Integer> linkedList = new LinkedList();
+        LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(1);
         linkedList.add(2);
         assertEquals(2, linkedList.get(1));
     }
-//
-//    @Test
-//    @DisplayName("Test get element at index")
-//    void testGetElementOutOfBounds() {
-//        AwesomeLinkedList<Integer> linkedList = new AwesomeLinkedList();
-//        assertEquals(2, linkedList.get(1));
-//    }
+
+    @Test
+    @DisplayName("Test get element at index")
+    void testGetElementOutOfBounds() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        //assertThrows( IndexOutOfBoundsException, linkedList.get(1));
+    }
 
     @Test
     @DisplayName("Test if the correct size is returned")
     void testGetListSizeOf0() {
-        LinkedList<Integer> linkedList = new LinkedList();
+        LinkedList<Integer> linkedList = new LinkedList<>();
         assertEquals(0, linkedList.size());
     }
 
     @Test
     @DisplayName("Test if size decreases when remove is run")
     void testRemoveElementFromList() {
-        LinkedList<Integer> linkedList = new LinkedList();
+        LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(1);
         linkedList.add(2);
         linkedList.add(3);
@@ -75,7 +91,7 @@ public class LinkedListTest {
     @Test
     @DisplayName("Test if the correct size is returned")
     void testRemoveCorrectElementFromList() {
-        LinkedList<Integer> linkedList = new LinkedList();
+        LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(1);
         linkedList.add(2);
         linkedList.add(3);
@@ -86,13 +102,13 @@ public class LinkedListTest {
 
     @Test
     @DisplayName("Test labb prerequisites")
-    void testEveryLabbPrerequisites(){
-        LinkedList<Integer> l = new LinkedList();
+    void testEveryLabbPrerequisites() {
+        LinkedList<Integer> l = new LinkedList<>();
         l.add(1);
         l.add(2);
         l.add(3);
         assertEquals(3, l.size());
-        l.add(0,99);
+        l.add(0, 99);
         assertEquals(4, l.size());
         assertEquals(99, l.get(0));
         assertEquals(3, l.get(3));
@@ -103,22 +119,12 @@ public class LinkedListTest {
 
     @Test
     @DisplayName("Test if list the value")
-    void testListContainsValueOf(){
-        LinkedList<Integer> l = new LinkedList();
+    void testListContainsValueOf() {
+        LinkedList<Integer> l = new LinkedList<>();
         l.add(1);
         l.add(2);
         l.add(3);
         assertTrue(l.contains(2));
         assertFalse(l.contains(8));
     }
-
-    @Test
-    @DisplayName("Test if push adds value")
-    void testPushAddsValue() {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(1);
-        assertEquals(1, stack.pop());
-    }
-
-
 }
