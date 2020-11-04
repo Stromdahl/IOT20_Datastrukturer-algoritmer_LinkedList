@@ -15,4 +15,21 @@ public class StackTest {
         stack.push(1);
         assertEquals(1, stack.pop());
     }
+
+    @Test
+    @DisplayName("Test if peak return correct value")
+    void testPeekReturnsCorrectValue() {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        assertEquals(1, stack.peek());
+    }
+
+    @Test
+    @DisplayName("Test if size return correct size")
+    void testSizeReturnsCorrectSize() {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        stack.push(2);
+        assertEquals(2, stack.size());
+    }
 }

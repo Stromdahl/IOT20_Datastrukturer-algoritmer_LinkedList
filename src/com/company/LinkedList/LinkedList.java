@@ -11,13 +11,17 @@ public class LinkedList<E> {
         }
     }
 
-    public void add(int i, E value) {
-        if (i >= this.size()) throw new IndexOutOfBoundsException();
-        head.add(i, value);
+    public void add(int i, E value) throws IndexOutOfBoundsException {
+        if (head == null) {
+            if (i > 0) throw new IndexOutOfBoundsException();
+            head = new Node<>(value);
+        } else {
+            head.add(i, value);
+        }
     }
 
     public E get(int i) throws IndexOutOfBoundsException {
-        if (i >= this.size()) throw new IndexOutOfBoundsException();
+        if (head == null) throw new IndexOutOfBoundsException();
         return head.get(i).value;
     }
 
@@ -26,7 +30,11 @@ public class LinkedList<E> {
     }
 
     public void remove(int index) {
-        head.remove(index);
+        if (index > 0) {
+            head.remove(index);
+        } else {
+            this.head = head.next;
+        }
     }
 
     public boolean empty() {
@@ -65,8 +73,9 @@ public class LinkedList<E> {
             }
         }
 
-        protected void add(int i, E value) {
+        protected void add(int i, E value) throws IndexOutOfBoundsException {
             if (i > 0) {
+                if (this.next == null) throw new IndexOutOfBoundsException();
                 this.next.add(i - 1, value);
             } else {
                 this.next = new Node<>(this.value, this.next);
@@ -75,7 +84,11 @@ public class LinkedList<E> {
         }
 
         protected Node<E> get(int i) {
-            return (i > 0) ? this.next.get(i - 1) : this;
+            if (i > 0) {
+                if (this.next == null) throw new IndexOutOfBoundsException();
+                return this.next.get(i - 1);
+            }
+            return this;
         }
 
         protected void remove(int index) {

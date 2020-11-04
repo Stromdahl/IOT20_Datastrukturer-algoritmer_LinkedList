@@ -27,6 +27,21 @@ public class LinkedListTest {
     }
 
     @Test
+    @DisplayName("Test add a element to list at index 0")
+    void testAddElementToListAtIndex0() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(0, 4);
+        assertEquals(4, linkedList.get(0));
+    }
+
+    @Test
+    @DisplayName("Test add a element to list out of bounds at index 0")
+    void testAddElementToListAtIndexOutOfBoundsIndex0() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.add(2, 4));
+    }
+
+    @Test
     @DisplayName("Test add a element to list out of bounds")
     void testAddElementToListAtIndexOutOfBounds() {
         LinkedList<Integer> linkedList = new LinkedList<>();
@@ -46,9 +61,16 @@ public class LinkedListTest {
 
     @Test
     @DisplayName("Test get element out of bonds")
-    void testGetElementAtIndexOutOutbounds() {
+    void testGetElementAtOutbounds() {
         LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(1);
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.get(1));
+    }
+
+    @Test
+    @DisplayName("Test get element out of bonds")
+    void testGetElementAtIndexOutOutbounds() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
         assertThrows(IndexOutOfBoundsException.class, () -> linkedList.get(1));
     }
 
@@ -59,6 +81,14 @@ public class LinkedListTest {
         linkedList.add(1);
         linkedList.add(2);
         assertEquals(2, linkedList.get(1));
+    }
+
+    @Test
+    @DisplayName("Test get element at index 0")
+    void testGetElementAtIndex0() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        assertEquals(1, linkedList.get(0));
     }
 
     @Test
@@ -98,6 +128,15 @@ public class LinkedListTest {
         assertEquals(2, linkedList.get(1));
         linkedList.remove(1);
         assertEquals(3, linkedList.get(1));
+    }
+
+    @Test
+    @DisplayName("Test if the element is removed at index 0")
+    void testRemoveCorrectElementFromListAtIndex0() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        linkedList.remove(0);
+        assertEquals(0, linkedList.size());
     }
 
     @Test
