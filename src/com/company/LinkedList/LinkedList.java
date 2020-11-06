@@ -26,7 +26,7 @@ public class LinkedList<E> {
     }
 
     public int size() {
-        return head == null ? 0 : head.size(1);
+        return head == null ? 0 : head.countNodes(1);
     }
 
     public void remove(int index) {
@@ -99,8 +99,8 @@ public class LinkedList<E> {
             }
         }
 
-        protected int size(int i) {
-            return next == null ? i : next.size(i + 1);
+        protected int countNodes(int i) {
+            return next == null ? i : next.countNodes(i + 1);
         }
     }
 }
