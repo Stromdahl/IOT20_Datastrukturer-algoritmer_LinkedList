@@ -16,7 +16,7 @@ public class LinkedListTest {
     }
 
     @Test
-    @DisplayName("Test add a element to list")
+    @DisplayName("Test add a element to list at Index")
     void testAddElementToListAtIndex() {
         LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(1);
@@ -35,17 +35,17 @@ public class LinkedListTest {
     }
 
     @Test
-    @DisplayName("Test add a element to list out of bounds at index 0")
-    void testAddElementToListAtIndexOutOfBoundsIndex0() {
-        LinkedList<Integer> linkedList = new LinkedList<>();
-        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.add(2, 4));
-    }
-
-    @Test
     @DisplayName("Test add a element to list out of bounds")
     void testAddElementToListAtIndexOutOfBounds() {
         LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(1);
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.add(2, 4));
+    }
+
+    @Test
+    @DisplayName("Test add a element to list out of bounds at index 0")
+    void testAddElementToListAtIndexOutOfBoundsIndex0() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
         assertThrows(IndexOutOfBoundsException.class, () -> linkedList.add(2, 4));
     }
 
@@ -89,13 +89,6 @@ public class LinkedListTest {
         LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(1);
         assertEquals(1, linkedList.get(0));
-    }
-
-    @Test
-    @DisplayName("Test get element at index")
-    void testGetElementOutOfBounds() {
-        LinkedList<Integer> linkedList = new LinkedList<>();
-        //assertThrows( IndexOutOfBoundsException, linkedList.get(1));
     }
 
     @Test
@@ -157,7 +150,7 @@ public class LinkedListTest {
     }
 
     @Test
-    @DisplayName("Test if list the value")
+    @DisplayName("Test if list contains the value")
     void testListContainsValueOf() {
         LinkedList<Integer> l = new LinkedList<>();
         l.add(1);
@@ -165,5 +158,12 @@ public class LinkedListTest {
         l.add(3);
         assertTrue(l.contains(2));
         assertFalse(l.contains(8));
+    }
+
+    @Test
+    @DisplayName("Test if false is returned if the list is empty")
+    void testContainsEmptyList() {
+        LinkedList<Integer> l = new LinkedList<>();
+        assertFalse(l.contains(1));
     }
 }

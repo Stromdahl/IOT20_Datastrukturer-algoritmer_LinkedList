@@ -42,14 +42,10 @@ public class LinkedList<E> {
     }
 
     public boolean contains(E value) {
-        boolean result = false;
-        for (int i = 0; i < size(); i++) {
-            get(i);
-            if (get(i) == value) {
-                result = true;
-            }
+        if (head == null) {
+            return false;
         }
-        return result;
+        return head.contains(value);
     }
 
     static class Node<E> {
@@ -101,6 +97,15 @@ public class LinkedList<E> {
 
         protected int countNodes(int i) {
             return next == null ? i : next.countNodes(i + 1);
+        }
+
+        protected boolean contains(E value) {
+            if (this.value == value) {
+                return true;
+            } else if (this.next != null) {
+                return this.next.contains(value);
+            }
+            return false;
         }
     }
 }
